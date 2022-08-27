@@ -15,6 +15,7 @@ install() {
 
   if [ "$(os::is_macos)" = "true" ]; then
     os="darwin"
+    arch="amd64" # not support arm64, force amd64
     bin_path=/usr/local/bin
   fi
 
@@ -22,7 +23,7 @@ install() {
 
   local url="https://github.com/cheat/cheat/releases/download/${VERSION}/cheat-${os}-${arch}.gz"
 
-  echo "download url: $url ..."
+  # echo "download url: $url ..."
   curl -fSL $url -o $tmp_file
 
   cd /tmp
