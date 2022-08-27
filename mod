@@ -1,2 +1,2 @@
-VERSION=v1.0.1
+VERSION=v1.0.2
 DESCRIPTION="Package Cheat"
