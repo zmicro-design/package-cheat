@@ -1,0 +1,48 @@
+#!/bin/bash
+
+VERSION=4.3.2
+
+help() {
+  echo "Usage:"
+  echo "  zmicro package install frp <args...>"
+  echo ""
+}
+
+install() {
+  local os="linux"
+  local arch="$(os::arch)"
+  local bin_path=/usr/bin
+
+  if [ "$(os::is_macos)" = "true" ]; then
+    os="darwin"
+    bin_path=/usr/local/bin
+  fi
+
+  local tmp_file=/tmp/cheat.gz
+
+  local url=https://github.com/cheat/cheat/releases/download/${VERSION}/cheat-${os}-${arch}.gz
+
+  curl -fSL $url -o $tmp_file
+
+  cd /tmp
+  gunzip $tmp_file
+  chmod +x cheat
+
+  sudo mv cheat $bin_path
+}
+
+core() {
+  if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    help
+    exit 0
+  fi
+
+  install
+  log::success "install frp success."
+}
+
+run() {
+  core $@
+}
+
+run $@
