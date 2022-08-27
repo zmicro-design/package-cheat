@@ -20,8 +20,9 @@ install() {
 
   local tmp_file=/tmp/cheat.gz
 
-  local url=https://github.com/cheat/cheat/releases/download/${VERSION}/cheat-${os}-${arch}.gz
+  local url="https://github.com/cheat/cheat/releases/download/${VERSION}/cheat-${os}-${arch}.gz"
 
+  echo "download url: $url ..."
   curl -fSL $url -o $tmp_file
 
   cd /tmp
